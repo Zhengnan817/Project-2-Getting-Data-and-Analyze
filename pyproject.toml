@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Project_2_Getting_Data_and_Analyzing"
+name = "project_2_getting_data_and_analyzing"
 authors = [
     {name = "Zhengnan Li", email = "zli6@mail.yu.edu"}
 ]
@@ -29,7 +29,7 @@ dynamic = ["version"]
 Repository = "https://github.com/Zhengnan817/Project-2-Getting-Data-and-Analyzing.git"
 
 [project.scripts]
-Project_2_Getting_Data_and_Analyzing = "project_source.cli:main"
+project_2_getting_data_and_analyzing = "project_source.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
