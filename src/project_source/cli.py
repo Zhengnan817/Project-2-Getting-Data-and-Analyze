@@ -1,9 +1,9 @@
 """Run Getting data and analyze for part 1 to part 4 """
 
-from EDA import Ferry_EDA
-from web_scraping import Web
-from xml_parsing import XMLname
-from api import API
+from src.project_source.EDA import Ferry_EDA
+from src.project_source.web_scraping import Web
+from src.project_source.xml_parsing import XMLname
+from src.project_source.api import API
 
 
 def main():
