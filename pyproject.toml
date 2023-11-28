@@ -3,30 +3,33 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "project 2"
-authors = [{name = "Zhengnan Li", email = "zli6@mail.yu.edu"}]
-maintainers = [{name = "Zhengnan Li "},]
-description = "A project for assignment."
-readme = "README.md"
-keywords = ["data visualization", "summary statistics", "data animation"]
-license = {file = "LICENSE"}
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Framework :: Matplotlib",
-    "Intended Audience :: assignment",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.11",
-
+name = "Project-2-Getting-Data-and-Analyzing"
+authors = [
+    {name = "Zhengnan Li", email = "zli6@mail.yu.edu"}
 ]
-requires-python = ">=3.9"
+maintainers = [
+    {name = "Zhengnan Li", email = "zli6@mail.yu.edu"},
+]
+description = "Project 3 is a assignment to aggregate, group, and reshape data. And present a visualization result by EDA."
+readme = "README.md"
+keywords = ["data visualization", "Chips of CPU and GPU", "Analytics Programming"]
+license = {text = "MIT License"}
+requires-python = ">=3.10"
 dependencies = [
-    "matplotlib>=3.8.2",
-    "numpy>=1.26.1",
-    "pandas>=2.1.1",
+    "matplotlib>=3.3",
+    "numpy>=1.20",
+    "pandas>=1.4",
+    "beautifulsoup4>=4.10.0",
+    "requests>=2.27.1",
     "seaborn>=0.13.0",
-    "request>=2.31.0",
-    "BeautifulSoup>=4",
-
 ]
 dynamic = ["version"]
+
+[project.urls]
+Repository = "https://github.com/Zhengnan817/Project-2-Getting-Data-and-Analyzing.git"
+
+[project.scripts]
+Project_2_Getting_Data_and_Analyzing = "project_source.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
