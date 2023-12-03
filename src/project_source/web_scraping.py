@@ -35,51 +35,42 @@ class Web:
         -------
         None
         """
-        url = "https://www.collegeevaluator.com/rankings/new-york-best-colleges/"
-
-        r = requests.get(url)
-
-        c = r.content
-        if r.status_code == 200:
-            # Parse the HTML content of the page
-            response = requests.get(url)
-            soup = BeautifulSoup(response.content, "html.parser")
-            return soup
+        self.url = "https://www.collegeevaluator.com/rankings/new-york-best-colleges/"
+        response = requests.get(self.url)
+        if response.status_code != 200:
+            print(f"Error: {response.status_code}")
         else:
-            print("Fail")
-            return None
-        # To extract the first and last page numbers
-        paging = (
-            soup.find("div", {"id": "placardContainer"})
-            .find("div", {"id": "paging"})
-            .find_all("a")
-        )
-        start_page = paging[1].text
-        last_page = paging[len(paging) - 2].text
+            print("The web is scraped successfully")
+        soup = BeautifulSoup(response.content, "html.parser")
 
-    def convert_df(self):
-        """
-        Extract information about universities from the HTML content and store it in a Pandas DataFrame.
-
-        Returns:
-        --------
-        pd.DataFrame:
-            A DataFrame containing information about universities.
-
-        Raises:
-        -------
-        None
-        """
         # To extract the page content
-        car = self.scrap_web().find_all(
-            "div", {"class": "vehicle-card-main js-gallery-click-card search-slugs"}
+        school_ranks = soup.find(
+            "table", class_="comparison default br tdc ranked dataTable"
         )
+        if school_ranks is not None:
+            university_table = school_ranks.find("th")
+            university_table_titles = [title.text.strip() for title in university_table]
 
-        car_dict = {}
-        car_dict["store"] = car.find("h2", {"class": "title"}).text
-        car_dict["price"] = car.find("span", {"class": "primary-price"}).text
-        car_dict["mile"] = car.find("div", {"class": "mileage"}).text
+            df = pd.DataFrame(columns=university_table_titles)
 
-        # To store the dictionary to into a list
-        car_dict.append(car_dict)
-        df = pd.DataFrame(car_dict)
+            column_data = school_ranks.find("tr")
+        else:
+            print("Table not found")
+        for row in column_data:
+            row_data = row.find("td")
+            individual_row_data = [data.text.strip() for data in row_data]
+            length = len(df)
+            df.loc[length] = individual_row_data
+        print(df)
+
+        # for row in schools_data:
+        #     schools_data = {}
+        #     schools_data["rank"] = [
+        #         cell.get_text(strip=True)
+        #         for cell in school_ranks.find_all(["th", "td"])
+        #     ]
+
+        #     # Append dictionary to the list
+        #     schools_data.append(schools_data)
+
+        # # Convert the list of dictionaries to DataFrame
