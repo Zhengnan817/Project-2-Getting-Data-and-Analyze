@@ -19,6 +19,20 @@ class API:
     """
 
     def api_step_1(self):
+        """
+        Fetches data from the API endpoint and returns it as a Pandas DataFrame.
+
+        Returns:
+        -------
+        pd.DataFrame:
+            A DataFrame containing the fetched data with columns:
+            ["date", "hour", "route", "direction", "stop", "boardings", "typeday"].
+
+        Raises:
+        -------
+        Exception:
+            Raises an exception if something goes wrong during the API request.
+        """
         response = requests.get("https://data.cityofnewyork.us/resource/t5n6-gx8c.json")
         if response.ok:
             data = response.json()
