@@ -46,8 +46,7 @@ def part2():
 
 def part3():
     part_3 = Web()
-    table = part_3.scrap_web()
-    table.head()
+    part_3.scrap_web().head()
 
 
 def part4():
