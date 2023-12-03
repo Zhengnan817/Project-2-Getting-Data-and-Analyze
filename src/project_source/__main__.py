@@ -63,3 +63,6 @@ def part4():
     part_4.hour_analysis()
     part_4.directional_analysis()
     part_4.stop_specific_analysis()
+
+
+main()
