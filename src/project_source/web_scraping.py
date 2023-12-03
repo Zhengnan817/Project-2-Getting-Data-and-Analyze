@@ -22,7 +22,7 @@ class Web:
     None
     """
 
-    def scrap_web(self):
+    def scrap_university_web(self):
         """
         Fetch HTML content from a specified URL and return a BeautifulSoup object.
 
