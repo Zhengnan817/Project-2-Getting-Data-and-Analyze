@@ -44,17 +44,8 @@ def part2():
 
 
 def part3():
-    from src.project_source.web_scraping import Web
-
     part_3 = Web()
-    print(part_3)
-
-    print(part_3.scrap_web())
-
-    result = part_3.convert_df()
-
-    # Print or use the result as needed
-    print(result)
+    part_3.scrap_web().head()
 
 
 def part4():
