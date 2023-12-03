@@ -35,42 +35,20 @@ class Web:
         -------
         None
         """
-        self.url = "https://www.collegeevaluator.com/rankings/new-york-best-colleges/"
-        response = requests.get(self.url)
-        if response.status_code != 200:
-            print(f"Error: {response.status_code}")
-        else:
-            print("The web is scraped successfully")
-        soup = BeautifulSoup(response.content, "html.parser")
 
-        # To extract the page content
-        school_ranks = soup.find(
-            "table", class_="comparison default br tdc ranked dataTable"
+        response = requests.get(
+            "https://www.collegeevaluator.com/rankings/new-york-best-colleges/"
         )
-        if school_ranks is not None:
-            university_table = school_ranks.find("th")
-            university_table_titles = [title.text.strip() for title in university_table]
-
-            df = pd.DataFrame(columns=university_table_titles)
-
-            column_data = school_ranks.find("tr")
-        else:
-            print("Table not found")
-        for row in column_data:
-            row_data = row.find("td")
-            individual_row_data = [data.text.strip() for data in row_data]
+        soup = BeautifulSoup(response.content, "html.parser")
+        table = soup.find("table", {"id": "new-york-best-colleges-table"})
+        header = table.find("thead")
+        head = [x.text.strip() for x in header.find_all("th")]
+        df = pd.DataFrame(columns=head)
+        rows = table.find("tbody").find_all("tr")
+        for r in rows:
+            rank, school = [x.text.strip() for x in r.find_all("th")]
+            columns = [x.text.strip() for x in r.find_all("td")]
+            row_data = [rank, school] + columns
             length = len(df)
-            df.loc[length] = individual_row_data
-        print(df)
-
-        # for row in schools_data:
-        #     schools_data = {}
-        #     schools_data["rank"] = [
-        #         cell.get_text(strip=True)
-        #         for cell in school_ranks.find_all(["th", "td"])
-        #     ]
-
-        #     # Append dictionary to the list
-        #     schools_data.append(schools_data)
-
-        # # Convert the list of dictionaries to DataFrame
+            df.loc[length] = row_data
+        return df
