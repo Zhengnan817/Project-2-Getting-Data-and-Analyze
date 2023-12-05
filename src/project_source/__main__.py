@@ -32,7 +32,7 @@ def part1():
     # Print or use the result DataFrame as needed
     print(result_df)
 
-    from src.project_source.xml_parsing import XML
+    from .xml_parsing import XML
 
     part_1 = XML()
     part_1.parse_xml()
