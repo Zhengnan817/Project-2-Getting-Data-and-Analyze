@@ -46,7 +46,7 @@ def part2():
 
 def part3():
     part_3 = Web()
-    print(part_3.scrap_web().head())
+    print(part_3.scrap_university_web().head())
 
 
 def part4():
