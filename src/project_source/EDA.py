@@ -1,5 +1,10 @@
+"""
+Module for conducting exploratory data analysis (EDA) on NYC Ferry data.
+
+This module provides a class, `Ferry_EDA`, that encapsulates various methods
+for analyzing and visualizing NYC Ferry boarding data.
+"""
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from .api import API

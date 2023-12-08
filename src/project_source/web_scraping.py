@@ -1,5 +1,11 @@
+"""
+Module for web scraping information about universities.
+
+This module provides a class, `Web`, that encapsulates methods for fetching HTML content
+from a specified URL, creating a BeautifulSoup object, and converting the extracted
+information about universities into a Pandas DataFrame.
+"""
 import pandas as pd
-import numpy as np
 import requests
 from bs4 import BeautifulSoup
 

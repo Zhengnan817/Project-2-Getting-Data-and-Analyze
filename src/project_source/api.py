@@ -1,5 +1,11 @@
+"""
+Module for data retrieval through an API and processing using the API class.
+
+This module defines a class 'API' that interacts with an API to fetch and process data.
+
+- api_step_1: Fetches data from the API endpoint and returns it as a Pandas DataFrame.
+"""
 import pandas as pd
-import numpy as np
 import requests
 
 

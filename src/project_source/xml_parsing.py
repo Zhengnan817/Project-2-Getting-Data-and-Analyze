@@ -1,5 +1,11 @@
+"""
+Module for handling XML parsing and fetching/processing sitemap data.
+
+This module provides two classes:
+- XML: A class for parsing XML data from a specified URL.
+- XMLname: A class for fetching and processing sitemap data from a base URL.
+"""
 import pandas as pd
-import numpy as np
 import requests
 from urllib.parse import urljoin
 from xml.etree import ElementTree
